@@ -5,26 +5,362 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>여기어때</title>
-    <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="css/main.css">
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
+
     <script>
+
         window.onload = () => {
-            var swiper = new Swiper(".mySwiper", {
+            let menuBtn = document.getElementsByClassName('menu-btn')[0];
+            let nav = document.getElementsByClassName('nav')[0];
+            let categoryBtn = document.getElementsByClassName('category')[0];
+            let categoryItems = document.getElementsByClassName('category-item');
+
+            menuBtn.addEventListener('click', () => {
+
+
+                if (nav.classList.contains('active')) {
+                    nav.classList.remove('active');
+                }
+                else {
+                    nav.classList.add('active');
+                }
+
+            })
+            const contentImages = document.querySelectorAll('.content-image');
+
+            contentImages.forEach(container => {
+                const red = container.querySelector('.redlike');
+                const gray = container.querySelector('.graylike');
+
+                // gray heart 클릭 시
+                gray.addEventListener('click', () => {
+                    gray.style.display = 'none';
+                    red.style.display = 'block';
+                });
+
+                // red heart 클릭 시
+                red.addEventListener('click', () => {
+                    red.style.display = 'none';
+                    gray.style.display = 'block';
+                });
+            });
+            Array.from(categoryItems).forEach(item => {
+                item.addEventListener('click', () => {
+
+                    Array.from(categoryItems).forEach(i => i.classList.remove('active'));
+                    item.classList.add('active');
+
+                    const p = item.querySelector('.category');
+                    Array.from(categoryItems).forEach(i => i.querySelector('.category').classList.remove('active'));
+                    p.classList.add('active');
+
+                    Array.from(categoryItems).forEach(item => {
+                        item.addEventListener('click', () => {
+                            Array.from(categoryItems).forEach(i => i.classList.remove('active'));
+                            item.classList.add('active');
+                        });
+                    });
+
+                });
+            });
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // 모든 버튼 비활성화
+                    buttons.forEach(b => b.classList.remove('active'));
+                    // 클릭한 버튼 활성화
+                    btn.classList.add('active');
+                });
+            });
+            const btn = document.getElementsByClassName('input-keyword')[0];
+            const dropdown = document.getElementById('dropdownKeyword');
+            const overlay = document.getElementById('dropdownOverlay');
+
+            btn.addEventListener('click', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const scrollTop = window.pageYOffset;
+                const scrollLeft = window.pageXOffset;
+
+                dropdown.style.top = rect.bottom + scrollTop + 'px';
+                dropdown.style.left = rect.left + scrollLeft + 'px';
+
+                dropdown.classList.toggle('active');
+                overlay.classList.toggle('active');
+            });
+
+            overlay.addEventListener('click', () => {
+                dropdown.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!e.target.closest('#dropdownKeyword') && !e.target.closest('.input-keyword')) {
+                    dropdown.classList.remove('active');
+                    overlay.classList.remove('active');
+                }
+            });
+
+            var swiper = new Swiper(".section01", {
                 slidesPerView: 3,
-                spaceBetween: 30,
-                freeMode: true,
+                spaceBetween: 24,
+                FreeMode: true,
+                loop: true,
                 pagination: {
                     el: ".swiper-pagination",
                     clickable: true,
                 },
+                autoplay: {
+                    delay: 3000,
+                    disableOnInteraction: true,
+                },
+
+
+
             });
+
+            var swiper = new Swiper(".section02", {
+                slidesPerView: 5,
+                spaceBetween: 24,
+                freeMode: true,
+                loop: true,
+                breakpoints: {
+                    1000: {
+                        slidesPerView: 5,
+                        spaceBetween: 24,
+                    },
+                    435: {
+                        slidesPerView: 3.5,
+                        spaceBetween: 16,
+
+                    },
+                    0: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 16,
+
+                    },
+                },
+
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+
+
+            var swiper = new Swiper(".section03", {
+                slidesPerView: 4,
+                spaceBetween: 24,
+                freeMode: true,
+                loop: true,
+                breakpoints: {
+                    1000: {
+                        slidesPerView: 4,
+                        spaceBetween: 24,
+                    },
+                    435: {
+                        slidesPerView: 2.5,
+                        spaceBetween: 16,
+
+                    },
+                    0: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 16,
+
+                    },
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+
+
+            var swiper = new Swiper(".section04", {
+                slidesPerView: 4,
+                spaceBetween: 24,
+                freeMode: true,
+                loop: true,
+                breakpoints: {
+                    1000: {
+                        slidesPerView: 4,
+                        spaceBetween: 24,
+                    },
+                    435: {
+                        slidesPerView: 2.5,
+                        spaceBetween: 16,
+
+                    },
+                    0: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 16,
+
+                    },
+
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+
+
+            var swiper = new Swiper(".section05", {
+                slidesPerView: 4,
+                spaceBetween: 24,
+                freeMode: true,
+                loop: true,
+                breakpoints: {
+                    1000: {
+                        slidesPerView: 4,
+                        spaceBetween: 24,
+                    },
+                    435: {   
+                        slidesPerView: 2.5,
+                        spaceBetween: 16,
+
+                    },
+                    0: {
+                        slidesPerView: 1.5,
+                        spaceBetween: 16,
+
+                    },
+
+                },
+                navigation: {
+                    nextEl: ".swiper-button-next",
+                    prevEl: ".swiper-button-prev",
+                },
+            });
+
+            const tabClasses = ['tabList', 'tabList2', 'tabList3'];
+
+            tabClasses.forEach(cls => {
+                const buttons = document.querySelectorAll(`.${cls}`);
+                buttons.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        buttons.forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                    });
+                });
+            });
+
         }
     </script>
 </head>
 
 <body>
+    <div class="dropdown-keyword" id="dropdownKeyword">
+        <div class="city">
+            <div class="list">
+                <h5>추천 지역</h5>
+                <button class="item">
+                    <div class="image">
+                        <img src="img/dropdown-keyword-1-1.jpg" alt="드롭다운키워드1-1">
+                    </div><!-- .image end -->
+                    <div class="text">
+                        <b>해운대구</b>
+                        <span class="num">(1,339)</span>
+                        <p><span>37%</span>의 아고다 고객이 투숙함</p>
+                    </div><!-- .text end -->
+                </button><!-- .item end -->
+                <button class="item">
+                    <div class="image">
+                        <img src="img/dropdown-keyword-1-2.jpg" alt="드롭다운키워드1-2">
+                    </div><!-- .image end -->
+                    <div class="text">
+                        <b>서면</b>
+                        <span class="num">(624)</span>
+                        <p><span>14%</span>의 아고다 고객이 투숙함</p>
+                    </div><!-- .text end -->
+                </button><!-- .item end -->
+                <button class="item">
+                    <div class="image">
+                        <img src="img/dropdown-keyword-1-3.jpg" alt="드롭다운키워드1-3">
+                    </div><!-- .image end -->
+                    <div class="text">
+                        <b>남포</b>
+                        <span class="num">(471)</span>
+                        <p><span>13%</span>의 아고다 고객이 투숙함</p>
+                    </div><!-- .text end -->
+                </button><!-- .item end -->
+            </div><!-- .list end -->
+            <div class="list">
+                <h5>명소</h5>
+                <button class="item">
+                    <div class="image">
+                        <img src="img/dropdown-keyword-1-1.jpg" alt="드롭다운키워드1-1">
+                    </div><!-- .image end -->
+                    <div class="text">
+                        <b>해운대 해수욕장</b>
+                        <span class="num">(5,746)</span>
+                        <p>해변</p>
+                    </div><!-- .text end -->
+                </button><!-- .item end -->
+                <button class="item">
+                    <div class="image">
+                        <img src="img/dropdown-keyword-1-3.jpg" alt="드롭다운키워드1-3">
+                    </div><!-- .image end -->
+                    <div class="text">
+                        <b>감천 문화 마을</b>
+                        <span class="num">(32)</span>
+                        <p>명소/관광지</p>
+                    </div><!-- .text end -->
+                </button><!-- .item end -->
+                <button class="item">
+                    <div class="image">
+                        <img src="img/dropdown-keyword-2-3.jpg" alt="드롭다운키워드2-3">
+                    </div><!-- .image end -->
+                    <div class="text">
+                        <b>해동 용궁사</b>
+                        <span class="num">(255)</span>
+                        <p>종교시설</p>
+                    </div><!-- .text end -->
+                </button><!-- .item end -->
+            </div><!-- .list end -->
+            <div class="list">
+                <h5>인기있는 도시</h5>
+                <button class="item">
+                    <div class="image">
+                        <img src="img/dropdown-keyword-3-1.jpg" alt="드롭다운키워드3-1">
+                    </div><!-- .image end -->
+                    <div class="text">
+                        <b>서울</b><span class="num"> (5,945)</span>
+                    </div><!-- .text end -->
+                </button><!-- .item end -->
+                <button class="item">
+                    <div class="image">
+                        <img src="img/dropdown-keyword-3-2.jpg" alt="드롭다운키워드3-2">
+                    </div><!-- .image end -->
+                    <div class="text">
+                        <b>부산</b><span class="num"> (2,734)</span>
+                    </div><!-- .text end -->
+                </button><!-- .item end -->
+                <button class="item">
+                    <div class="image">
+                        <img src="img/dropdown-keyword-3-3.jpg" alt="드롭다운키워드3-3">
+                    </div><!-- .image end -->
+                    <div class="text">
+                        <b>속초</b> <span class="num"> (800)</span>
+                    </div><!-- .text end -->
+                </button><!-- .item end -->
+                <button class="item">
+                    <div class="image">
+                        <img src="img/dropdown-keyword-3-4.jpg" alt="드롭다운키워드3-4">
+                    </div><!-- .image end -->
+                    <div class="text">
+                        <b>제주</b> <span class="num"> (4,939)</span>
+                    </div><!-- .text end -->
+                </button><!-- .item end -->
+            </div><!-- .list end -->
+        </div><!-- .city end -->
+    </div><!-- .dropdown-keyword -->
+
+
+    <div class="overlay" id="dropdownOverlay"></div>
+
     <div id="wrap">
         <header class="header">
             <div class="inner">
@@ -43,12 +379,14 @@
                     </button><!-- .menu-btn end -->
                     <nav class="nav">
                         <ul class="gnb">
-                            <li><a href="#"><img src="img/elite_img_header_PC.webp" alt="회원가입배너"></a></li>
-                            <li><a href="#" class="account-btn">로그인/회원가입</a></li>
-                            <hr color="#d7d7d7">
-                            <li><a href="#">비회원 예약 조회</a></li>
-                            <hr color="#d7d7d7">
-                            <p class="title">모든여행</p>
+                            <div class="line1">
+                                <a href="#" class="banner"><img src="img/elite_img_header_PC.webp" alt="회원가입배너"></a>
+                                <a href="#" class="login">로그인/회원가입</a>
+                            </div><!-- line1 -->
+                            <li class="check"><a href="#">비회원 예약 조회</a></li>
+                            <li class="title">
+                                <p>모든여행</p>
+                            </li>
                             <li><a href="#">국내숙소</a></li>
                             <li><a href="#">해외숙소</a></li>
                             <li><a href="#">패키지 여행</a></li>
@@ -56,8 +394,8 @@
                             <li><a href="#">항공+숙소</a></li>
                             <li><a href="#">레저 · 티켓</a></li>
                             <li><a href="#">렌터카</a></li>
-                            <li><a href="#">공간대여</a></li>
-                            <hr color="#d7d7d7">
+                            <li class="btm_line"><a href="#">공간대여</a></li>
+
                             <li><a href="#">이벤트</a></li>
                             <li><a href="#">고객센터</a></li>
                         </ul><!-- .gnb end -->
@@ -78,49 +416,55 @@
                     </h3>
                     <div class="search-section">
                         <div class="search-category">
-                            <div class="item active">
-                                <img src="img/icons-home-active.svg" alt="국내숙소">
-                                <p class="active">국내숙소</p>
-                            </div>
-                            <div class="item">
-                                <img src="img/icons-global-inactive.svg" alt="해외숙소">
-                                <p>해외숙소</p>
-                            </div>
-                            <div class="item">
-                                <img src="img/icons-pakage-tour-inactive.svg" alt="패키지여행">
-                                <p>패키지 여행</p>
-                            </div>
+                            <button class="category-item">
+                                <img class="red" src="img/icons-home-active.svg" alt="국내숙소">
+                                <img class="gray" src="img/icons-home-inactive.svg" alt="국내숙소">
+                                <p class="category">국내숙소</p>
+                            </button>
+                            <button class="category-item">
+                                <img class="red" src="img/icons-global-active.svg" alt="국내숙소">
+                                <img class="gray" src="img/icons-global-inactive.svg" alt="국내숙소">
+                                <p class="category">해외숙소</p>
+                            </button>
+                            <button class="category-item">
+                                <img class="red" src="img/icons-pakage-tour-active.svg" alt="국내숙소">
+                                <img class="gray" src="img/icons-pakage-tour-inactive.svg" alt="국내숙소">
+                                <p class="category">패키지 여행</p>
+                            </button>
                         </div><!-- .search-category end -->
                         <div class="text">
-                            <div class="option-btn">
-                                <button class="night active">숙박</button>
-                                <button class="day">대실</button>
+                            <div class="option">
+                                <button class="option-btn active">숙박</button>
+                                <button class="option-btn">대실</button>
                             </div><!-- .option-btn end -->
                             <div class="search-input">
-                                <div class="input-box">
-                                    <img src="img/icons-magnifier.svg" alt="검색">
-                                    <label for="destination"></label>
-                                    <input type="text" id="destination" name="destination"
-                                        placeholder="여행지나 숙소를 검색해보세요.">
-                                </div><!-- .input-box end -->
+                                <div class="input-keyword">
+                                    <div class="input-box">
+                                        <img src="img/icons-magnifier.svg" alt="검색">
+                                        <label for="destination"></label>
+                                        <input type="text" id="destination" name="destination"
+                                            placeholder="여행지나 숙소를 검색해보세요.">
+                                    </div><!-- .input-box end -->
+
+                                </div><!-- .input-keyword end -->
                                 <div class="row2">
-                                    <div class="input-box check in">
+                                    <button class="input-box check in">
                                         <img src="img/icons-check-in.svg" alt="검색">
                                         <p>2026.09.24 <span class="s2">목요일</span></p>
-                                    </div><!-- .input-box check-in end -->
-                                    <div class="input-box check out">
+                                    </button><!-- .input-box check-in end -->
+                                    <button class="input-box check out">
                                         <img src="img/icons-check-out.svg" alt="검색">
                                         <p>2026.09.28 <span class="s2">월요일</span></p>
-                                    </div><!-- .input-box check-out end -->
-                                    <div class="input-box person">
+                                    </button><!-- .input-box check-out end -->
+                                    <button class="input-box person">
                                         <img src="img/icons-person.svg" alt="검색">
                                         <p>인원 2 <span class="s2">객실 1개</span></p>
-                                    </div><!-- .input-box person end -->
+                                    </button><!-- .input-box person end -->
                                 </div><!-- .row2 end -->
-                                <div class="flight">
+                                <button class="flight">
                                     <img src="img/icons-plus.svg" alt="항공편">
                                     <p>항공편도 예약하기</p>
-                                </div><!-- .flight end -->
+                                </button><!-- .flight end -->
                                 <a href="#" class="search-btn">
                                     <p>검색</p>
                                 </a><!-- .search-btn end -->
@@ -130,33 +474,40 @@
                     </div><!-- .search-section -->
                 </div><!-- .main-visual-text end -->
             </section><!-- .main-visual end -->
+
+
+
             <section class="recent-search-link">
-                <div class="text">
-                    <strong>부산 숙소 검색 계속하기</strong>
-                    <div class="detail">
-                        <span>9월 24일~26일 · 게스트 2명</span>
-                        <a href="#"><img src="img/icons-arrow-white.svg" alt="바로가기"></a>
-                    </div><!-- .detail end -->
-                </div><!-- .text -->
-                <div class="image">
-                    <img class="left" src="img/recent-search.jpg" alt="최근숙소이미지">
-                    <img class="main" src="img/recent-search.jpg" alt="최근숙소이미지">
-                    <img class="right" src="img/recent-search.jpg" alt="최근숙소이미지">
-                </div><!-- .image end -->
+                <div class="content">
+                    <div class="text">
+                        <strong>부산 숙소 검색 계속하기</strong>
+                        <div class="detail">
+                            <span>9월 24일~26일<span class="guest-number"> · 게스트 2명</span></span>
+                            <a href="#"><img src="img/icons-arrow-white.svg" alt="바로가기"></a>
+                        </div><!-- .detail end -->
+                    </div><!-- .text -->
+                    <div class="image">
+                        <img class="left" src="img/recent-search.jpg" alt="최근숙소이미지">
+                        <img class="main" src="img/recent-search.jpg" alt="최근숙소이미지">
+                        <img class="right" src="img/recent-search.jpg" alt="최근숙소이미지">
+                    </div><!-- .image end -->
+                </div><!-- .content end -->
             </section><!-- .recent-search-link end -->
-            <div class="line"></div>
+
             <section class="event">
                 <div class="inner">
                     <div class="title-section">
                         <h4 class="title">이벤트</h4>
                         <a href="#">더보기</a>
                     </div><!-- .title-section end -->
-                    <div class="swiper mySwiper">
+                    <div class="swiper section01">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
                                 <div class="text">
                                     <p>사케부터 테마파크 투어까지!</p>
-                                    <p>최대 <strong>44%</strong> 할인</p>
+                                    <span>최대 </span>
+                                    <p class="mobile">최대 </p><strong>44%</strong><span> 할인</span>
+                                    <p class="mobile"> 할인</p>
                                 </div><!-- .text end -->
                                 <div class="image">
                                     <img src="img/event-1.jpg" alt=" 이벤트1">
@@ -182,237 +533,177 @@
                             </div><!-- .swiper-slide end -->
                             <div class="swiper-slide">
                                 <div class="text">
-                                    <p>매주 월·목 오전 10시 오픈!</p>
-                                    <p>국내여행 <strong>오픈런</strong></p>
+                                    <p>특별재난지역여행</p>
+                                    <p>최대 <strong>5만원</strong> 할인</p>
                                 </div><!-- .text end -->
                                 <div class="image">
-                                    <img src="img/event-3.jpg" alt=" 이벤트3">
+                                    <img src="img/event-4.jpg" alt=" 이벤트3">
+                                </div><!-- .image end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="text">
+                                    <p>전국한화리조트</p>
+                                    <p>최대 <strong>84%</strong> 할인</p>
+                                </div><!-- .text end -->
+                                <div class="image">
+                                    <img src="img/event-5.jpg" alt=" 이벤트3">
+                                </div><!-- .image end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="text">
+                                    <p class="event-detail">매주 월·목 </p>
+                                    <p class="event-detail none">오전 10시 오픈!</p>
+                                    <p>놀라운특가 <strong>오픈런</strong></p>
+                                </div><!-- .text end -->
+                                <div class="image">
+                                    <img src="img/event-6.jpg" alt=" 이벤트3">
                                 </div><!-- .image end -->
                             </div><!-- .swiper-slide end -->
                         </div><!-- .swiper-wrapper end -->
                         <div class="swiper-pagination"></div>
-                    </div><!-- .swiper mySwiper -->
-                    <!--                  <div class="paging">
-                        <p></p>
-                        <p></p>
-                        <p class="active"></p>
-                        <p></p>
-                        <p></p>
-                    </div>
-                     -->
+                    </div><!-- .swiper section01 -->
                 </div><!-- .inner end -->
             </section><!-- .event end -->
             <section class="recent-search">
-                <div class="inner">
+                <div class="inner main">
                     <div class="title-section">
                         <h4 class="title">최근 검색하신 숙소 다시 보시겠어요?</h4>
                         <a href="#">더보기</a>
                     </div><!-- .title-section end -->
-                    <div class="list">
-                        <div class="content">
-                            <div class="content-image">
-                                <img src="img/recent-search-hotels-4.jpg" alt="신라스테이삼성" class="hotel-photo">
-                                <img src="img/icons-heart-inactive.svg" alt="좋아요" class="like">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <div class="text-left">
-                                    <strong>신라 스테이 삼성</strong>
-                                    <p class="location">서울 강남구</p>
-                                </div><!-- .text-left end -->
-                                <div class="text-right">
-                                    <div class="rate">
-                                        <img src="img/icons-star.svg" alt="별">
-                                        <b>9.2</b>
-                                    </div><!-- .rate end -->
-                                    <p class="s2">923명 평가</p>
-                                </div><!-- .text-right end -->
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                        <div class="content">
-                            <div class="content-image">
-                                <img src="img/recent-search-hotels-2.jpg" alt="페닌슬라호텔" class="hotel-photo">
-                                <img src="img/icons-heart-inactive.svg" alt="좋아요" class="like">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <div class="text-left">
-                                    <strong>페닌슬라 호텔</strong>
-                                    <p class="location">부산 해운대구</p>
-                                </div><!-- .text-left end -->
-                                <div class="text-right">
-                                    <div class="rate">
-                                        <img src="img/icons-star.svg" alt="별">
-                                        <b>9.8</b>
-                                    </div><!-- .rate end -->
-                                    <p class="s2">4,727명 평가</p>
-                                </div><!-- .text-right end -->
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                        <div class="content">
-                            <div class="content-image">
-                                <img src="img/recent-search-hotels-3.jpg" alt="롯데시티호텔" class="hotel-photo">
-                                <img src="img/icons-heart-active.svg" alt="좋아요" class="like">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <div class="text-left">
-                                    <strong>롯데 시티 호텔</strong>
-                                    <p class="location">서울 종로구</p>
-                                </div><!-- .text-left end -->
-                                <div class="text-right">
-                                    <div class="rate">
-                                        <img src="img/icons-star.svg" alt="별">
-                                        <b>9.8</b>
-                                    </div><!-- .rate end -->
-                                    <p class="s2">3,028명 평가</p>
-                                </div><!-- .text-right end -->
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                        <div class="content">
-                            <div class="content-image">
-                                <img src="img/recent-search-hotels-4.jpg" alt="그랜드하얏트호텔" class="hotel-photo">
-                                <img src="img/icons-heart-inactive.svg" alt="좋아요" class="like">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <div class="text-left">
-                                    <strong>그랜드 하얏트 호텔</strong>
-                                    <p class="location">인천 영종도</p>
-                                </div><!-- .text-left end -->
-                                <div class="text-right">
-                                    <div class="rate">
-                                        <img src="img/icons-star.svg" alt="별">
-                                        <b>9.1</b>
-                                    </div><!-- .rate end -->
-                                    <p class="s2">2,596명 평가</p>
-                                </div><!-- .text-right end -->
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                        <div class="content">
-                            <div class="content-image">
-                                <img src="img/recent-search-hotels-5.jpg" alt="메종글래드호텔" class="hotel-photo">
-                                <img src="img/icons-heart-inactive.svg" alt="좋아요" class="like">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <div class="text-left">
-                                    <strong>메종 글래드 호텔</strong>
-                                    <p class="location">제주도 제주시</p>
-                                </div><!-- .text-left end -->
-                                <div class="text-right">
-                                    <div class="rate">
-                                        <img src="img/icons-star.svg" alt="별">
-                                        <b>9.5</b>
-                                    </div><!-- .rate end -->
-                                    <p class="s2">1,845명 평가</p>
-                                </div><!-- .text-right end -->
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                    </div><!-- .list end -->
-                </div>
+                    <div class="swiper section02">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/recent-search-hotels-1.jpg" alt="최근검색호텔1" class="hotel-photo"
+                                        data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="text-left">
+                                        <strong>신라 스테이 삼성</strong>
+                                        <p class="location">서울 강남구</p>
+                                    </div><!-- .text-left end -->
+                                    <div class="text-right">
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.2</b>
+                                        </div><!-- .rate end -->
+                                        <p class="s2">923명 평가</p>
+                                    </div><!-- .text-right end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/recent-search-hotels-2.jpg" alt="최근검색호텔2" class="hotel-photo"
+                                        data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="text-left">
+                                        <strong>페닌슬라 호텔</strong>
+                                        <p class="location">부산 해운대구</p>
+                                    </div><!-- .text-left end -->
+                                    <div class="text-right">
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.8</b>
+                                        </div><!-- .rate end -->
+                                        <p class="s2">4,727명 평가</p>
+                                    </div><!-- .text-right end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/recent-search-hotels-3.jpg" alt="롯데시티호텔" class="hotel-photo"
+                                        data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="text-left">
+                                        <strong>롯데 시티 호텔</strong>
+                                        <p class="location">서울 종로구</p>
+                                    </div><!-- .text-left end -->
+                                    <div class="text-right">
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.8</b>
+                                        </div><!-- .rate end -->
+                                        <p class="s2">3,028명 평가</p>
+                                    </div><!-- .text-right end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/recent-search-hotels-4.jpg" alt="최근검색호텔4" class="hotel-photo"
+                                        data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="text-left">
+                                        <strong>그랜드 하얏트 호텔</strong>
+                                        <p class="location">인천 영종도</p>
+                                    </div><!-- .text-left end -->
+                                    <div class="text-right">
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.1</b>
+                                        </div><!-- .rate end -->
+                                        <p class="s2">2,596명 평가</p>
+                                    </div><!-- .text-right end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/recent-search-hotels-5.jpg" alt="최근검색호텔5" class="hotel-photo"
+                                        data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="text-left">
+                                        <strong>메종 글래드 호텔</strong>
+                                        <p class="location">제주도 제주시</p>
+                                    </div><!-- .text-left end -->
+                                    <div class="text-right">
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.5</b>
+                                        </div><!-- .rate end -->
+                                        <p class="s2">1,845명 평가</p>
+                                    </div><!-- .text-right end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/recent-search-hotels-6.jpg" alt="최근검색호텔6" class="hotel-photo"
+                                        data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="text-left">
+                                        <strong>헬릭스 호텔</strong>
+                                        <p class="location">제주도 제주시</p>
+                                    </div><!-- .text-left end -->
+                                    <div class="text-right">
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.5</b>
+                                        </div><!-- .rate end -->
+                                        <p class="s2">1,845명 평가</p>
+                                    </div><!-- .text-right end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                        </div><!-- .swiper-wrapper end -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div><!-- .swiper section02 end -->
+                </div><!-- .inner main-->
             </section><!-- .recent-search -->
-            <section class="hotels near">
-                <div class="inner">
-                    <div class="title-section">
-                        <h4 class="title">검색하신 지역 근처 숙소</h4>
-                        <a href="#">더보기</a>
-                    </div><!-- .title-section end -->
-                    <div class="list">
-                        <div class="content">
-                            <div class="content-image">
-                                <img src="img/near-hotels-1.jpg" alt="SL호텔강릉" class="hotel-photo">
-                                <img src="img/icons-heart-inactive.svg" alt="좋아요" class="like">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <div class="hotel-name-section">
-                                    <div class="hotel-name">
-                                        <p class="s2">가족호텔 · 호텔</p>
-                                        <strong>SL호텔 강릉</strong>
-                                    </div><!-- .hotel-name end -->
-                                    <div class="rate">
-                                        <img src="img/icons-star.svg" alt="별">
-                                        <b>9.5</b>
-                                    </div><!-- .rate end -->
-                                </div><!-- .hotel-name-section end -->
-                                <p class="location">강릉 · <span class="s1">터미널 차량 5분</span></p>
-                                <p class="s1">게스트 한마디 <span class="review">”더할 나위 없이 좋았습니다”</span></p>
-                                <div class="price-section">
-                                    <p class="s2">쿠폰 적용시</p>
-                                    <strong><s>￦240,000</s>￦180,000</strong>
-                                </div><!-- .price-section end -->
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                        <div class="content">
-                            <div class="content-image">
-                                <img src="img/near-hotels-2.jpg" alt="솔라고호텔" class="hotel-photo">
-                                <img src="img/icons-heart-inactive.svg" alt="좋아요" class="like">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <div class="hotel-name-section">
-                                    <div class="hotel-name">
-                                        <p class="s2">레지던스 · 호텔</p>
-                                        <strong>솔라고 호텔</strong>
-                                    </div><!-- .hotel-name end -->
-                                    <div class="rate">
-                                        <img src="img/icons-star.svg" alt="별">
-                                        <b>9.5</b>
-                                    </div><!-- .rate end -->
-                                </div><!-- .hotel-name-section end -->
-                                <p class="location">평창 · <span class="s1">명지벨리 차량 9분</span></p>
-                                <p class="s1">게스트 한마디 <span class="review">”가성비 최고입니다”</span></p>
-                                <div class="price-section">
-                                    <p class="s2">쿠폰 적용시</p>
-                                    <strong><s>￦105,000</s>￦98,000</strong>
-                                </div><!-- .price-section end -->
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                        <div class="content">
-                            <div class="content-image">
-                                <img src="img/near-hotels-3.jpg" alt="체스터톤스호텔" class="hotel-photo">
-                                <img src="img/icons-heart-inactive.svg" alt="좋아요" class="like">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <div class="hotel-name-section">
-                                    <div class="hotel-name">
-                                        <p class="s2">가족호텔 · 호텔</p>
-                                        <strong>체스터톤스 호텔</strong>
-                                    </div><!-- .hotel-name end -->
-                                    <div class="rate">
-                                        <img src="img/icons-star.svg" alt="별">
-                                        <b>9.5</b>
-                                    </div><!-- .rate end -->
-                                </div><!-- .hotel-name-section end -->
-                                <p class="location">속초 · <span class="s1">속초 터미널 차량 11분</span></p>
-                                <p class="s1">게스트 한마디 <span class="review">”좋은 추억이 된 숙소였습니다” </span></p>
-                                <div class="price-section">
-                                    <p class="s2">쿠폰 적용시</p>
-                                    <strong><s>￦240,000</s>￦180,000</strong>
-                                </div><!-- .price-section end -->
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                        <div class="content">
-                            <div class="content-image">
-                                <img src="img/near-hotels-4.jpg" alt="신라스테이호텔" class="hotel-photo">
-                                <img src="img/icons-heart-inactive.svg" alt="좋아요" class="like">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <div class="hotel-name-section">
-                                    <div class="hotel-name">
-                                        <p class="s2">블랙 · 호텔</p>
-                                        <strong>신라스테이 호텔</strong>
-                                    </div><!-- .hotel-name end -->
-                                    <div class="rate">
-                                        <img src="img/icons-star.svg" alt="별">
-                                        <b>9.6</b>
-                                    </div><!-- .rate end -->
-                                </div><!-- .hotel-name-section end -->
-                                <p class="location">양양 · <span class="s1">오죽헌 도보 13분</span></p>
-                                <p class="s1">게스트 한마디 <span class="review">”조식도 맛있고 바다도 보여요”</span></p>
-                                <div class="price-section">
-                                    <p class="s2">쿠폰 적용시</p>
-                                    <strong><s>￦380,000</s>￦230,000</strong>
-                                </div><!-- .price-section end -->
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                    </div><!-- .list end -->
-                </div>
-            </section><!-- .hotels near end -->
             <section class="ad-membership">
                 <div class="inner">
                     <div class="text">
@@ -424,7 +715,7 @@
                         </p>
                         <div class="ad-cta-btn">
                             <a href="#">로그인/회원가입</a>
-                            <span>혜택 자세히 보기</span>
+                            <span><u>혜택 자세히 보기</u></span>
                         </div><!-- .ad-cta-btn end -->
                     </div><!-- .text end -->
                     <div class="image">
@@ -432,170 +723,404 @@
                     </div><!-- .image end -->
                 </div>
             </section><!-- .ad-membership end -->
+            <section class="hotels near">
+                <div class="inner main">
+                    <div class="title-section">
+                        <h4 class="title">검색하신 지역 근처 숙소</h4>
+                        <a href="#">더보기</a>
+                    </div><!-- .title-section end -->
+                    <div class="swiper section03">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/near-hotels-1.jpg" alt="SL호텔강릉" class="hotel-photo" data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="hotel-name-section">
+                                        <div class="hotel-name">
+                                            <p class="s2">가족호텔 · 호텔</p>
+                                            <strong>SL호텔 강릉</strong>
+                                        </div><!-- .hotel-name end -->
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.5</b>
+                                        </div><!-- .rate end -->
+                                    </div><!-- .hotel-name-section end -->
+                                    <p class="location">강릉 · <span class="s1">터미널 차량 5분</span></p>
+                                    <div class="guest-word">
+                                        <p class="s2">게스트 한마디 </p>
+                                        <span class="review">”더할 나위 없이 좋았습니다”</span>
+                                    </div><!-- .guest-word -->
+                                    <div class="price-section">
+                                        <p class="s2">쿠폰 적용시</p>
+                                        <strong><s>￦240,000</s>￦180,000</strong>
+                                    </div><!-- .price-section end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/near-hotels-2.jpg" alt="솔라고호텔" class="hotel-photo" data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="hotel-name-section">
+                                        <div class="hotel-name">
+                                            <p class="s2">레지던스 · 호텔</p>
+                                            <strong>솔라고 호텔</strong>
+                                        </div><!-- .hotel-name end -->
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.5</b>
+                                        </div><!-- .rate end -->
+                                    </div><!-- .hotel-name-section end -->
+                                    <p class="location">평창 · <span class="s1">명지벨리 차량 9분</span></p>
+                                    <div class="guest-word">
+                                        <p class="s2">게스트 한마디 </p>
+                                        <span class="review">”가성비 최고입니다”</span>
+                                    </div><!-- .guest-word -->
+                                    <div class="price-section">
+                                        <p class="s2">쿠폰 적용시</p>
+                                        <strong><s>￦105,000</s>￦98,000</strong>
+                                    </div><!-- .price-section end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/near-hotels-3.jpg" alt="체스터톤스호텔" class="hotel-photo"
+                                        data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="hotel-name-section">
+                                        <div class="hotel-name">
+                                            <p class="s2">가족호텔 · 호텔</p>
+                                            <strong>체스터톤스 호텔</strong>
+                                        </div><!-- .hotel-name end -->
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.5</b>
+                                        </div><!-- .rate end -->
+                                    </div><!-- .hotel-name-section end -->
+                                    <p class="location">속초 · <span class="s1">속초 터미널 차량 11분</span></p>
+                                    <div class="guest-word">
+                                        <p class="s2">게스트 한마디 </p>
+                                        <span class="review">”좋은 추억이 된 숙소였습니다”</span>
+                                    </div><!-- .guest-word -->
+                                    <div class="price-section">
+                                        <p class="s2">쿠폰 적용시</p>
+                                        <strong><s>￦240,000</s>￦180,000</strong>
+                                    </div><!-- .price-section end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/near-hotels-5.jpg" alt="근처호텔5" class="hotel-photo" data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="hotel-name-section">
+                                        <div class="hotel-name">
+                                            <p class="s2">특급 · 호텔</p>
+                                            <strong>홀리데이 호텔</strong>
+                                        </div><!-- .hotel-name end -->
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.8</b>
+                                        </div><!-- .rate end -->
+                                    </div><!-- .hotel-name-section end -->
+                                    <p class="location">부산 · <span class="s1">영도 도보 5분</span></p>
+                                    <div class="guest-word">
+                                        <p class="s2">게스트 한마디 </p>
+                                        <span class="review">”숲 뷰에 바다도 걸어서 가까워요”</span>
+                                    </div><!-- .guest-word -->
+                                    <div class="price-section">
+                                        <p class="s2">쿠폰 적용시</p>
+                                        <strong><s>￦380,000</s>￦230,000</strong>
+                                    </div><!-- .price-section end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/near-hotels-4.jpg" alt="신라스테이호텔" class="hotel-photo"
+                                        data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="hotel-name-section">
+                                        <div class="hotel-name">
+                                            <p class="s2">블랙 · 호텔</p>
+                                            <strong>신라스테이 호텔</strong>
+                                        </div><!-- .hotel-name end -->
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.6</b>
+                                        </div><!-- .rate end -->
+                                    </div><!-- .hotel-name-section end -->
+                                    <p class="location">양양 · <span class="s1">오죽헌 도보 13분</span></p>
+                                    <div class="guest-word">
+                                        <p class="s2">게스트 한마디 </p>
+                                        <span class="review">”조식도 맛있고 바다도 보여요”</span>
+                                    </div><!-- .guest-word -->
+                                    <div class="price-section">
+                                        <p class="s2">쿠폰 적용시</p>
+                                        <strong><s>￦380,000</s>￦230,000</strong>
+                                    </div><!-- .price-section end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                        </div><!-- .swiper-wrapper end -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div><!-- .swiper section03 end -->
+                </div><!-- .inner main end -->
+            </section><!-- .hotels near end -->
+
             <section class="hotels popular">
-                <div class="inner">
+                <div class="inner main">
                     <h4 class="title">인기 추천 숙소</h4>
-                    <ul class="tab">
-                        <li class="active">전체</li>
-                        <li>모텔</li>
-                        <li>호텔·리조트</li>
-                        <li>펜션·풀빌라</li>
-                        <li>프리미엄 블랙</li>
-                        <li>캠핑·글램핑</li>
-                        <li>홈&빌라</li>
-                        <li>게하·한옥</li>
-                    </ul><!-- .tab end -->
-                    <div class="list">
-                        <div class="content">
-                            <div class="content-image">
-                                <img src="img/popular-hotels-1.jpg" alt="힐튼경주" class="hotel-photo">
-                                <img src="img/icons-heart-inactive.svg" alt="좋아요" class="like">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <div class="hotel-name-section">
-                                    <div class="hotel-name">
-                                        <p class="s2">가족호텔 · 호텔</p>
-                                        <strong>힐튼 경주</strong>
-                                    </div><!-- .hotel-name end -->
-                                    <div class="rate">
-                                        <img src="img/icons-star.svg" alt="별">
-                                        <b>9.4</b>
-                                    </div><!-- .rate end -->
-                                </div><!-- .hotel-name-section end -->
-                                <p class="location">경주 · <span class="s1">터미널 차량 5분</span></p>
-                                <p class="s1">게스트 한마디 <span class="review">”너무 만족했던 숙소였습니다”</span></p>
-                                <div class="price-section">
-                                    <p class="s2">쿠폰 적용시</p>
-                                    <strong><s>￦165,000</s>￦130,000</strong>
-                                </div><!-- .price-section end -->
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                        <div class="content">
-                            <div class="content-image">
-                                <img src="img/popular-hotels-2.jpg" alt="여수라마다프라자호텔" class="hotel-photo">
-                                <img src="img/icons-heart-inactive.svg" alt="좋아요" class="like">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <div class="hotel-name-section">
-                                    <div class="hotel-name">
-                                        <p class="s2">특1급 · 호텔</p>
-                                        <strong>여수 라마다 프라자 호텔</strong>
-                                    </div><!-- .hotel-name end -->
-                                    <div class="rate">
-                                        <img src="img/icons-star.svg" alt="별">
-                                        <b>9.5</b>
-                                    </div><!-- .rate end -->
-                                </div><!-- .hotel-name-section end -->
-                                <p class="location">여수 · <span class="s1">여수엑스포역, 낭만포차 차량 7분</span></p>
-                                <p class="s1">게스트 한마디 <span class="review">”몸도 눈도 힐링하고 왔습니다”</span></p>
-                                <div class="price-section">
-                                    <p class="s2">쿠폰 적용시</p>
-                                    <strong><s>￦130,000</s>￦85,000</strong>
-                                </div><!-- .price-section end -->
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                        <div class="content">
-                            <div class="content-image">
-                                <img src="img/popular-hotels-3.jpg" alt="정동진썬크루즈호텔" class="hotel-photo">
-                                <img src="img/icons-heart-inactive.svg" alt="좋아요" class="like">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <div class="hotel-name-section">
-                                    <div class="hotel-name">
-                                        <p class="s2">가족호텔 · 호텔</p>
-                                        <strong>정동진 썬크루즈호텔</strong>
-                                    </div><!-- .hotel-name end -->
-                                    <div class="rate">
-                                        <img src="img/icons-star.svg" alt="별">
-                                        <b>9.5</b>
-                                    </div><!-- .rate end -->
-                                </div><!-- .hotel-name-section end -->
-                                <p class="location">강릉 · <span class="s1">정동진역 차량 5분</span></p>
-                                <p class="s1">게스트 한마디 <span class="review">”멋진 전망을 가진 호텔” </span></p>
-                                <div class="price-section">
-                                    <p class="s2">쿠폰 적용시</p>
-                                    <strong><s>￦105,000</s>￦98,000</strong>
-                                </div><!-- .price-section end -->
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                        <div class="content">
-                            <div class="content-image">
-                                <img src="img/popular-hotels-4.jpg" alt="종로부티크호텔K" class="hotel-photo">
-                                <img src="img/icons-heart-inactive.svg" alt="좋아요" class="like">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <div class="hotel-name-section">
-                                    <div class="hotel-name">
-                                        <p class="s2">모텔</p>
-                                        <strong>종로 부티크 호텔K</strong>
-                                    </div><!-- .hotel-name end -->
-                                    <div class="rate">
-                                        <img src="img/icons-star.svg" alt="별">
-                                        <b>9.6</b>
-                                    </div><!-- .rate end -->
-                                </div><!-- .hotel-name-section end -->
-                                <p class="location"><span class="s1">종로3가역 도보 6분</span></p>
-                                <p class="s1">게스트 한마디 <span class="review">”깔끔하고 접근성이 너무 좋아요”</span></p>
-                                <div class="price-section">
-                                    <p class="s2">쿠폰 적용시</p>
-                                    <strong><s>￦135,000</s>￦105,000</strong>
-                                </div><!-- .price-section end -->
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                    </div><!-- .list end -->
-                </div>
+                    <div class="tab-section">
+                        <ul class="tab">
+                            <li class="tabList active">전체</li>
+                            <li class="tabList">모텔</li>
+                            <li class="tabList">호텔·리조트</li>
+                            <li class="tabList">펜션·풀빌라</li>
+                            <li class="tabList">프리미엄 블랙</li>
+                            <li class="tabList">캠핑·글램핑</li>
+                            <li class="tabList">홈&빌라</li>
+                            <li class="tabList">게하·한옥</li>
+                            <div class="tab-btn-down">
+                                <button><img src="img/icons-arrow-down-black.svg" alt="탭더보기버튼"></button>
+                            </div><!-- .tab-btn-down -->
+                        </ul><!-- .tab end -->
+
+                    </div><!-- .tab-section end -->
+                    <div class="swiper section04">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/popular-hotels-1.jpg" alt="힐튼경주" class="hotel-photo"
+                                        data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="hotel-name-section">
+                                        <div class="hotel-name">
+                                            <p class="s2">가족호텔 · 호텔</p>
+                                            <strong>힐튼 경주</strong>
+                                        </div><!-- .hotel-name end -->
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.4</b>
+                                        </div><!-- .rate end -->
+                                    </div><!-- .hotel-name-section end -->
+                                    <p class="location">경주 · <span class="s1">터미널 차량 5분</span></p>
+                                    <div class="guest-word">
+                                        <p class="s2">게스트 한마디 </p>
+                                        <span class="review">”너무 만족했던 숙소였습니다”</span>
+                                    </div><!-- .guest-word -->
+                                    <div class="price-section">
+                                        <p class="s2">쿠폰 적용시</p>
+                                        <strong><s>￦165,000</s>￦130,000</strong>
+                                    </div><!-- .price-section end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/popular-hotels-2.jpg" alt="여수라마다프라자호텔" class="hotel-photo"
+                                        data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="hotel-name-section">
+                                        <div class="hotel-name">
+                                            <p class="s2">특1급 · 호텔</p>
+                                            <strong>여수 라마다 프라자 호텔</strong>
+                                        </div><!-- .hotel-name end -->
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.5</b>
+                                        </div><!-- .rate end -->
+                                    </div><!-- .hotel-name-section end -->
+                                    <p class="location">
+                                        여수 ·
+                                        <span class="s1">여수엑스포역
+                                            <span class="s1 none">, 낭만포차</span> 차량 7분 </span>
+                                    </p>
+                                    <div class="guest-word">
+                                        <p class="s2">게스트 한마디 </p>
+                                        <span class="review">”몸도 눈도 힐링하고 왔습니다”</span>
+                                    </div><!-- .guest-word -->
+                                    <div class="price-section">
+                                        <p class="s2">쿠폰 적용시</p>
+                                        <strong><s>￦130,000</s>￦85,000</strong>
+                                    </div><!-- .price-section end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/popular-hotels-3.jpg" alt="정동진썬크루즈호텔" class="hotel-photo"
+                                        data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="hotel-name-section">
+                                        <div class="hotel-name">
+                                            <p class="s2">가족호텔 · 호텔</p>
+                                            <strong>정동진 썬크루즈호텔</strong>
+                                        </div><!-- .hotel-name end -->
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.5</b>
+                                        </div><!-- .rate end -->
+                                    </div><!-- .hotel-name-section end -->
+                                    <p class="location">강릉 · <span class="s1">정동진역 차량 5분</span></p>
+                                    <div class="guest-word">
+                                        <p class="s2">게스트 한마디 </p>
+                                        <span class="review">”멋진 전망을 가진 호텔”</span>
+                                    </div><!-- .guest-word -->
+                                    <div class="price-section">
+                                        <p class="s2">쿠폰 적용시</p>
+                                        <strong><s>￦105,000</s>￦98,000</strong>
+                                    </div><!-- .price-section end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/popular-hotels-4.jpg" alt="종로부티크호텔K" class="hotel-photo"
+                                        data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="hotel-name-section">
+                                        <div class="hotel-name">
+                                            <p class="s2">3성급 · 호텔</p>
+                                            <strong>종로 부티크 호텔K</strong>
+                                        </div><!-- .hotel-name end -->
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.6</b>
+                                        </div><!-- .rate end -->
+                                    </div><!-- .hotel-name-section end -->
+                                    <p class="location"><span class="s1">종로3가역 도보 6분</span></p>
+                                    <div class="guest-word">
+                                        <p class="s2">게스트 한마디 </p>
+                                        <span class="review">”깔끔하고 접근성이 너무 좋아요”</span>
+                                    </div><!-- .guest-word -->
+                                    <div class="price-section">
+                                        <p class="s2">쿠폰 적용시</p>
+                                        <strong><s>￦135,000</s>￦105,000</strong>
+                                    </div><!-- .price-section end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="content-image">
+                                    <img src="img/popular-hotels-5.jpg" alt="인기숙소5" class="hotel-photo"
+                                        data-arrow="true">
+                                    <img src="img/icons-heart-active.svg" alt="좋아요" class="redlike">
+                                    <img src="img/icons-heart-inactive.svg" alt="좋아요" class="graylike">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <div class="hotel-name-section">
+                                        <div class="hotel-name">
+                                            <p class="s2">호스텔 · 호텔</p>
+                                            <strong>디자이너스 호텔</strong>
+                                        </div><!-- .hotel-name end -->
+                                        <div class="rate">
+                                            <img src="img/icons-star.svg" alt="별">
+                                            <b>9.6</b>
+                                        </div><!-- .rate end -->
+                                    </div><!-- .hotel-name-section end -->
+                                    <p class="location"><span class="s1">광화문역 도보 10분</span></p>
+                                    <div class="guest-word">
+                                        <p class="s2">게스트 한마디 </p>
+                                        <span class="review">”깨끗하고 친절하세요”</span>
+                                    </div><!-- .guest-word -->
+                                    <div class="price-section">
+                                        <p class="s2">쿠폰 적용시</p>
+                                        <strong><s>￦135,000</s>￦105,000</strong>
+                                    </div><!-- .price-section end -->
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                        </div><!-- .swiper-wrapper end -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div><!-- .swiper section04 end -->
+                </div><!-- .inner main end -->
             </section><!-- .hotels popular end -->
             <section class="black-pick">
-                <div class="inner">
+                <div class="inner main">
                     <div class="title-section">
                         <h4 class="title">블랙 PICK
                             <p>여행 전문가가 경험하고 선별한 숙소 큐레이션</p>
                         </h4>
                     </div><!-- .title-section end -->
-                    <div class="list">
-                        <div class="content">
-                            <div class="image">
-                                <img src="img/black-pick-1.jpg" alt="">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <p>풀빌라</p>
-                                <h4 class="lg3">끝없이 펼쳐지는 바다</h4>
-                                <strong class="lg2">해남 인피니티오션 풀빌라</strong>
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                        <div class="content">
-                            <div class="image">
-                                <img src="img/black-pick-2.jpg" alt="">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <p>펜션</p>
-                                <h4 class="lg3">해질녘 하늘뷰 맛집</h4>
-                                <strong class="lg2">청도 에코네이처 펜션</strong>
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                        <div class="content">
-                            <div class="image">
-                                <img src="img/black-pick-3.jpg" alt="">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <p>프로모션</p>
-                                <h4 class="lg3">깊은 숲과 평온한 바다가 함께</h4>
-                                <strong class="lg2">기장 그랜드 호텔</strong>
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                        <div class="content">
-                            <div class="image">
-                                <img src="img/black-pick-4.jpg" alt="">
-                            </div><!-- .content-image end -->
-                            <div class="text">
-                                <p>프로모션</p>
-                                <h4 class="lg3">물 위의 별장, 워터방갈로</h4>
-                                <strong class="lg2">부안 유토피아 펜션</strong>
-                            </div><!-- .text end -->
-                        </div><!-- .content end -->
-                    </div><!-- .list end -->
+                    <div class="swiper section05">
+                        <div class="swiper-wrapper">
+                            <div class="swiper-slide">
+                                <div class="image">
+                                    <img src="img/black-pick-1.jpg" alt="블랙픽카드1" data-arrow="true">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <p>풀빌라</p>
+                                    <h4 class="lg3">끝없이 펼쳐지는 바다</h4>
+                                    <strong class="lg2">해남 인피니티오션 풀빌라</strong>
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="image">
+                                    <img src="img/black-pick-2.jpg" alt="블랙픽카드2" data-arrow="true">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <p>펜션</p>
+                                    <h4 class="lg3">해질녘 하늘뷰 맛집</h4>
+                                    <strong class="lg2">청도 에코네이처 펜션</strong>
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="image">
+                                    <img src="img/black-pick-3.jpg" alt="블랙픽카드3" data-arrow="true">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <p>프로모션</p>
+                                    <h4 class="lg3">깊은 숲과 평온한 바다가 함께</h4>
+                                    <strong class="lg2">기장 그랜드 호텔</strong>
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="image">
+                                    <img src="img/black-pick-4.jpg" alt="블랙픽카드4" data-arrow="true">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <p>프로모션</p>
+                                    <h4 class="lg3">물 위의 별장, 워터방갈로</h4>
+                                    <strong class="lg2">부안 유토피아 펜션</strong>
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                            <div class="swiper-slide">
+                                <div class="image">
+                                    <img src="img/black-pick-5.jpg" alt="블랙픽카드5" data-arrow="true">
+                                </div><!-- .content-image end -->
+                                <div class="text">
+                                    <p>펜션</p>
+                                    <h4 class="lg3">풀파티 명소,</h4>
+                                    <strong class="lg2">제주 팜페스 펜션</strong>
+                                </div><!-- .text end -->
+                            </div><!-- .swiper-slide end -->
+                        </div><!-- .swiper-wrapper end -->
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div><!-- .swiper section05 end -->
                 </div><!-- .inner end -->
-            </section><!-- .black-pick -->
+            </section><!-- .black-pick end-->
             <section class="ad-app-download">
                 <div class="inner">
                     <div class="image">
@@ -606,6 +1131,9 @@
                         <p class="s1">국내/해외 숙소부터 항공권까지<br>
                             실시간 최저가로 예약하세요.</p>
                         <img src="img/icons-QR-Code.svg" alt="QR코드">
+                        <div class="btn-app-download">
+                            <button>다운로드</button>
+                        </div><!-- .btn-app-download end -->
                     </div><!-- .text -->
                 </div><!-- .inner end -->
             </section><!-- .ad-app-download end -->
@@ -615,9 +1143,9 @@
             <div class="inner">
                 <h4 class="title">인기 추천 숙소</h4>
                 <ul class="tab">
-                    <li class="active">지역</li>
-                    <li>도시</li>
-                    <li>명소</li>
+                    <li class="tabList3 active">지역</li>
+                    <li class="tabList3">도시</li>
+                    <li class="tabList3">명소</li>
                 </ul>
                 <ul class="link-list">
                     <li><a href="#">경기</a></li>
@@ -643,10 +1171,10 @@
             <div class="inner">
                 <h4 class="title">해외 여행지</h4>
                 <ul class="tab">
-                    <li class="active">국가</li>
-                    <li>지역</li>
-                    <li>도시</li>
-                    <li>명소</li>
+                    <li class="tabList2 active">국가</li>
+                    <li class="tabList2">지역</li>
+                    <li class="tabList2">도시</li>
+                    <li class="tabList2">명소</li>
                 </ul><!-- .tab end -->
                 <ul class="link-list">
                     <li><a href="#">괌</a></li>
@@ -741,37 +1269,40 @@
                         </div><!-- .btn end -->
                     </div><!-- .cs-center end -->
                     <div class="link-list">
-                        <ul>
-                            <p>회사</p>
-                            <li><a href="#">회사 소개</a></li>
-                        </ul>
-                        <ul>
-                            <p>서비스</p>
-                            <li><a href="#">공지사항</a></li>
-                            <li><a href="#">자주 묻는 질문</a></li>
-                            <li><a href="#">기업 출장/복지 서비스 문의</a></li>
-                            <li><a href="#">국내 여행매거진</a></li>
-                            <li><a href="#">해외 여행매거진</a></li>
-                        </ul>
-                        <ul>
-                            <p>혜택</p>
-                            <li><a href="#">엘리트 멤버십</a></li>
-                            <li><a href="#">트립홀릭 혜택 안내</a></li>
-                            <li><a href="#">여기어때 상품권 조회</a></li>
-                        </ul>
-                        <ul>
-                            <p>모든여행</p>
-                            <li><a href="#">국내숙소</a></li>
-                            <li><a href="#">해외숙소</a></li>
-                            <li><a href="#">패키지 여행</a></li>
-                            <li><a href="#">항공</a></li>
-                            <li><a href="#">항공+숙소</a></li>
-                            <li><a href="#">레저 · 티켓</a></li>
-                            <li><a href="#">렌터카</a></li>
-                            <li><a href="#">공간대여</a></li>
-                        </ul>
-
-                    </div><!-- .link-list footer end -->
+                        <div class="footer-row1">
+                            <ul>
+                                <p>회사</p>
+                                <li><a href="#">회사 소개</a></li>
+                            </ul>
+                            <ul>
+                                <p>서비스</p>
+                                <li><a href="#">공지사항</a></li>
+                                <li><a href="#">자주 묻는 질문</a></li>
+                                <li class="flex-wrap"><a href="#"> <span>기업 출장</span><span>/복지 서비스 문의</span></a></li>
+                                <li><a href="#">국내 여행매거진</a></li>
+                                <li><a href="#">해외 여행매거진</a></li>
+                            </ul>
+                        </div><!-- .footer-row1 end -->
+                        <div class="footer-row2">
+                            <ul>
+                                <p>혜택</p>
+                                <li><a href="#">엘리트 멤버십</a></li>
+                                <li><a href="#">트립홀릭 혜택 안내</a></li>
+                                <li><a href="#">여기어때 상품권 조회</a></li>
+                            </ul>
+                            <ul>
+                                <p>모든여행</p>
+                                <li><a href="#">국내숙소</a></li>
+                                <li><a href="#">해외숙소</a></li>
+                                <li><a href="#">패키지 여행</a></li>
+                                <li><a href="#">항공</a></li>
+                                <li><a href="#">항공+숙소</a></li>
+                                <li><a href="#">레저 · 티켓</a></li>
+                                <li><a href="#">렌터카</a></li>
+                                <li><a href="#">공간대여</a></li>
+                            </ul>
+                        </div><!-- .footer-row2 end -->
+                    </div><!-- .link-list end -->
                 </section><!-- .footer-nav end -->
                 <div class="info-wrap">
                     <div class="company-info">
